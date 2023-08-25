@@ -1,11 +1,11 @@
 from flask import Flask
-from flask_restx import Api
+# from flask_restx import Api
 
 # 데이터 조회 파일
 import csv_test as df
 
 app = Flask(__name__)
-api = Api(app)
+# api = Api(app)
 
 # csv 데이터 가져오기
 data = df.csv_data()
