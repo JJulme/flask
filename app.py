@@ -1,36 +1,24 @@
 from flask import Flask
-# from flask_restx import Api
-
+from flask_cors import CORS
 # 데이터 조회 파일
 import csv_test as df
 
 app = Flask(__name__)
-# api = Api(app)
+# CORS 설정을 해줘야 클라이언트에서 접속 가능, 하지만 보안 취약
+cors = CORS(app, resources={r"*":{"origins":"*"}})
 
 # csv 데이터 가져오기
-data = df.csv_data()
+themepark_recent = df.themepark_recent()
+themepark_basic = df.themepark_basic()
 
 # 기본 로컬 설정
 @app.route("/")
 def hello():
     return "Hello, my Flask!"
 
-# 일주일 날짜를 넘겨주는 api
-@app.route("/week")
-def week():
-    result = df.show_week(data)
-    return result
-
-"""
-/themepark/<date>/<place>의 <date> 에
-int 형이면 공연일정, str 형이면 기타정보
-"""
-# 테마파크 정보를 가져오는 api
-@app.route("/themepark/<date>/<place>")
-# 날짜와 원하는 놀이공원 이름을 받음
-def get(date, place):
-    # 해당 일자와 놀이공원의 공연 보여줌 - 날짜 int, 장소 str
-    result = df.themepark_info(data , int(date), place)
+@app.route("/themepark/<date>/<place>/<kategorie>")
+def get_themepark(date, place, kategorie):
+    result = df.get_info(themepark_recent, themepark_basic, place, kategorie, int(date))
     return result
 
 # python app.py 서버 열기
