@@ -23,7 +23,9 @@ def hello():
 # 크롤링 데이터와 기본 정보 조회해서 결과 보여줌
 @app.route("/themepark/<date>/<code>")
 def get_themepark(date, code):
+    # 장소, 정보, 코드로 선택한 버튼 추출
     check_list = df.get_code(themepark_place, themepark_kategorie, code)
+    # 선택된 정보로 데이터 반환
     result = df.get_data(themepark_recent, themepark_basic, int(date), check_list)
     return result
     
