@@ -4,8 +4,8 @@ def themepark_recent():
     data = pd.read_csv("230818_Themepark_df.csv")
     return data
 
-def themepark_basic():
-    data = pd.read_csv("Themepark_df.csv")
+def read_basic(playtype):
+    data = pd.read_csv(f"{playtype}_df.csv")
     return data
 
 # 코드를 가져와 해석해서 선택된 목록을 확인    
@@ -51,10 +51,10 @@ def get_data(recent, basic, day, check_list):
         for place in check_place:
             # 크롤링 데이터 조회
             try:
-                data = recent.loc[(recent["날짜"]==day) & (recent["장소"]==place)][kategorie]
+                data = basic.loc[(basic["장소"]==place)][kategorie]
             # 기본 정보 조회
             except:
-                data = basic.loc[(basic["장소"]==place)][kategorie]
+                data = recent.loc[(recent["날짜"]==day) & (recent["장소"]==place)][kategorie]
             # 나온 결과를 리스트에 저장
             finally:
                 # Series 형식을 String 형식으로 변환
