@@ -46,7 +46,7 @@ def get_themepark(date, code):
     res = make_response(result)
     return res
 
-# 기본 정보 조회해서 결과 보여줌
+# 동물원 정보 조회해서 결과 보여줌
 @app.route("/zoo/<date>/<code>")
 def get_zoo(date, code):
     # 장소, 정보, 코드로 선택한 버튼 추출
@@ -58,7 +58,7 @@ def get_zoo(date, code):
     res = make_response(result)
     return res
 
-# 기본 정보 조회해서 결과 보여줌
+# 아쿠아리움 정보 조회해서 결과 보여줌
 @app.route("/aquarium/<date>/<code>")
 def get_aquarium(date, code):
     # 장소, 정보, 코드로 선택한 버튼 추출
