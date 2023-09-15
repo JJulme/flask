@@ -42,7 +42,7 @@ def get_data(recent, basic, day, check_list:list):
     # 선택한 정보 리스트
     check_kategorie = check_list[1]
     # 전체를 저장할 빈리스트 생성
-    list_large = []
+    list_large = [check_place, check_kategorie]
     # 정보 반복
     for kategorie in check_kategorie:
         # 각 정보를 저장할 빈리스트 생성
@@ -63,5 +63,4 @@ def get_data(recent, basic, day, check_list:list):
                 list_small.append(result)
         # 정리된 각 정보리스트를 하나의 리스트에 추가
         list_large.append(list_small)
-    check_list.append(list_large)
-    return check_list
+    return list_large
