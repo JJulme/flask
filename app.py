@@ -44,7 +44,7 @@ def get_themepark(date, code):
     # 한글 깨짐 현상 해결
     result = json.dumps(result, ensure_ascii=False)
     res = make_response(result)
-    return [check_list, res]
+    return res
 
 # 동물원 정보 조회해서 결과 보여줌
 @app.route("/zoo/<date>/<code>")
@@ -56,7 +56,7 @@ def get_zoo(date, code):
     # 한글 깨짐 현상 해결
     result = json.dumps(result, ensure_ascii=False)
     res = make_response(result)
-    return [check_list, res]
+    return res
 
 # 아쿠아리움 정보 조회해서 결과 보여줌
 @app.route("/aquarium/<date>/<code>")
@@ -68,7 +68,7 @@ def get_aquarium(date, code):
     # 한글 깨짐 현상 해결
     result = json.dumps(result, ensure_ascii=False)
     res = make_response(result)
-    return [check_list, res]
+    return res
 
 
 # python app.py 서버 열기

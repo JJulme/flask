@@ -36,7 +36,7 @@ def get_code(place:list, kategorie:list, code:str):
     return result
 
 # 크롤링 데이터, 기본 정보 데이터, 날짜, 선택한 리스트를 넣고 그에 해당하는 정보 반환
-def get_data(recent, basic, day, check_list):
+def get_data(recent, basic, day, check_list:list):
     # 선택한 장소 리스트
     check_place = check_list[0]
     # 선택한 정보 리스트
@@ -63,4 +63,5 @@ def get_data(recent, basic, day, check_list):
                 list_small.append(result)
         # 정리된 각 정보리스트를 하나의 리스트에 추가
         list_large.append(list_small)
-    return list_large
+    check_list.append(list_large)
+    return check_list
