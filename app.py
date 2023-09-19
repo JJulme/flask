@@ -11,11 +11,11 @@ app = Flask(__name__)
 # CORS 설정을 해줘야 클라이언트에서 접속 가능, 하지만 보안 취약
 cors = CORS(app, resources={r"*":{"origin":"*"}})
 
-# 놀이공원 데이터 가져오기 3_8
-themepark_recent = df.themepark_recent()
-themepark_basic = df.read_basic("Themepark")
-themepark_place = ["롯데월드", "서울랜드", "에버랜드"]
-themepark_kategorie = ["운영시간", "공연일정", "편의시설", "가족 편의시설", "장애인 편의시설", "요금우대", "음식점", "대중교통 이용방법"]
+# 놀이공원 데이터 가져오기 8_9
+themepark_recent = []
+themepark_basic = df.read_basic("Themepark_230919")
+themepark_place = ["롯데월드", "서울랜드", "에버랜드", "이월드", "경주월드", "광주패밀리랜드", "롯데월드 부산", "신화테마파크"]
+themepark_kategorie = ["운영시간", "이용요금", "요금우대", "편의시설", "장애인 편의시설", "가족 편의시설", "음식점", "대중교통 이용방법", "주변 가볼만한 곳"]
 
 # 동물원 데이터 가져오기 10_8
 zoo_recent = []
