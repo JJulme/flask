@@ -33,6 +33,7 @@ def get_code(place:list, kategorie:list, code:str):
             check_kategorie.append(kategorie[i])
     # 장소리스트와 정보리스트를 하나의 리스트에 넣어 반환
     result = [check_place, check_kategorie]
+    print(result)
     return result
 
 # 크롤링 데이터, 기본 정보 데이터, 날짜, 선택한 리스트를 넣고 그에 해당하는 정보 반환
@@ -52,6 +53,7 @@ def get_data(recent, basic, day, check_list:list):
             # 크롤링 데이터 조회
             try:
                 data = basic.loc[(basic["장소"]==place)][kategorie]
+                print(data)
             # 기본 정보 조회
             except:
                 data = recent.loc[(recent["날짜"]==day) & (recent["장소"]==place)][kategorie]
