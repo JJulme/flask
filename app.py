@@ -29,6 +29,12 @@ aquarium_basic = df.read_basic("Aquarium_230926")
 aquarium_place = ["코엑스 아쿠아리움", "아쿠아플라넷 63", "롯데월드 아쿠아리움", "아쿠아플라넷 일산", "아쿠아플라넷 광교", "플레이아쿠아리움 부천", "경포아쿠아리움", "대전아쿠아리움", "대전엑스포아쿠아리움", "다누리아쿠아리움", "SEA LIFE 부산아쿠아리움", "아라마루 아쿠아리움", "대구아쿠아리움", "울진아쿠아리움", "아쿠아플라넷 여수", "아쿠아플라넷 제주"]
 aquarium_kategorie = ["이용시간", "입장요금", "우대할인", "특이시설", "편의시설", "음식점", "주변 가볼만한 곳", "대중교통 이용방법"]
 
+# 스키장 데이터 가져오기 12_11
+ski_recent=[]
+ski_basic = df.read_basic("Ski_231209")
+ski_place = ["곤지암리조트", "지산리조트","엘리시안 강촌", "비발디파크", "알펜시아", "오크벨리", "오투리조트", "용평리조트", "하이원리조트", "휘닉스파크", "덕유산 리조트", "에덴벨리 리조트"]
+ski_kategorie = ["이용시간", "입장요금", "장비렌탈", "의류렌탈", "눈썰매장", "우대할인", "특이시설", "음식점", "편의시설", "셔틀버스", "대중교통 이용방법"]
+
 # 기본 로컬 설정
 @app.route('/')
 def hello_world():
@@ -70,6 +76,17 @@ def get_aquarium(date, code):
     res = make_response(result)
     return res
 
+# 스키장 정보 조회해서 결과 보여줌
+@app.route("/ski/<date>/<code>")
+def get_ski(date, code):
+    # 장소, 정보, 코드로 선택한 버튼 추출
+    check_list = df.get_code(ski_place, ski_kategorie, code)
+    # 선택된 정보로 데이터 반환
+    result = df.get_data(ski_recent, ski_basic, int(date), check_list)
+    # 한글 깨짐 현상 해결
+    result = json.dumps(result, ensure_ascii=False)
+    res = make_response(result)
+    return res
 
 # python app.py 서버 열기
 if __name__ == "__main__":
